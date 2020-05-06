@@ -1,0 +1,38 @@
+server:
+ port: 8143
+ servlet:
+  context-path: /lgame-auth
+    
+#\u670d\u52a1\u8bbf\u95eecontext-path
+eureka:
+  instance:
+    metadata-map:
+      management:
+        context-path: /lgame-auth/actuator
+    health-check-url: http://localhost:${server.port}/lgame-auth/actuator/health
+    status-page-url: http://localhost:${server.port}/lgame-auth/actuator/info
+    home-page-url: http://localhost:${server.port}/
+ 
+
+#mybatis\u914d\u7f6e
+mybatis:
+  mapper-locations:
+    - classpath:mybatis/mapper/*.xml
+    
+#\u5f81\u4fe1
+creditParam: 
+  #\u5f81\u4fe1--\u6d4b\u8bd5IP
+  creditUrl: http://openapi-internal.shxgroup.net/api/p/credit
+  #\u5f81\u4fe1--\u6d4b\u8bd5\u5408\u4f5c\u65b9ID
+  creditPartnerId: 2000035
+  #\u5f81\u4fe1--\u6d4b\u8bd5\u5e94\u7528\u7f16\u53f7
+  creditAppId: 24346KAQYFS38UX1C
+  #\u5f81\u4fe1--\u8fde\u63a5\u79d8\u94a5
+  creditAccesskeySecret: O0bbb3b6W87b80T8b4b6438V9b2Q[N9
+  #\u5f81\u4fe1--\u8eab\u4efd\u8bc1\u67e5\u8be2
+  creditVerifyIdCardUrl: http://openapi-internal.shxgroup.net/api/p/credit/verify/verifyIdCard
+  #\u5f81\u4fe1--\u94f6\u884c\u53612\u8981\u7d20\u9a8c\u8bc1
+  creditBankVerifyUrl: http://openapi-internal.shxgroup.net/api/p/credit/verify/bankVerify21
+  #\u5f81\u4fe1--\u94f6\u884c\u53614\u8981\u7d20\u8ba4\u8bc1
+  creditBankVerifyFourUrl: http://openapi-internal.shxgroup.net/api/p/credit/verify/bankVerify4
+        

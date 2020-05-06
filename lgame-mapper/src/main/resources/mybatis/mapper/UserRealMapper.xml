@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lbd.lgame.mapper.UserRealMapper">
+	<!--保存app用户认证信息 -->
+	<insert id="saveUserReal" parameterType="com.lbd.lgame.model.UserReal">
+		INSERT INTO
+		T_LG_USER_REAL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null and userId !='' ">
+				USER_ID,
+			</if>
+			<if test="userName != null and userName !='' ">
+				USER_NAME,
+			</if>
+			<if test=" cId !=null and cId !='' ">
+				C_ID,
+			</if>
+			<if test="remark != null and remark!='' ">
+				REMARK,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null and userId !=''">
+				#{userId},
+			</if>
+			<if test="userName != null and userName !=''">
+				#{userName},
+			</if>
+			<if test="cId != null and cId !=''">
+				#{cId},
+			</if>
+			<if test="remark != null and remark !=''">
+				#{remark},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 根据用户ID修改实名认证信息表 -->
+	<update id="updateUserRealByUserId"
+		parameterType="com.lbd.lgame.model.UserReal">
+		UPDATE
+		T_LG_USER_REAL
+		<set>
+			<if test="realStatus != null">
+				REAL_STATUS = #{realStatus},
+			</if>
+			<if test="realStatus != null">
+				REAL_TIME = SYSDATE,
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark},
+			</if>
+			<if test="userName != null">
+				USER_NAME = #{userName},
+			</if>
+			<if test="cId != null">
+				C_ID = #{cId},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo},
+			</if>
+			<if test="realTel != null">
+				REAL_TEL = #{realTel},
+			</if>
+			<if test="errMsg != null">
+				ERR_MSG = #{errMsg}
+			</if>
+		</set>
+		WHERE
+		USER_ID= #{userId}
+	</update>
+
+	<!-- 查询该用户是否有认证记录 -->
+	<select id="queryUserCount" parameterType="String"
+		resultType="int">
+		SELECT
+		COUNT(1)
+		FROM
+		T_LG_USER_REAL A
+		WHERE
+		A.USER_ID = #{userId}
+	</select>
+</mapper>

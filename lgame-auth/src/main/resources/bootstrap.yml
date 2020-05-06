@@ -1,0 +1,22 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+  instance:
+    prefer-ip-address: true
+
+
+spring:
+  application:
+    name: lgame-auth
+  cloud:
+    config:
+      discovery:
+        service-id: lgame-config
+        enabled: true
+      enabled: true  #\u8fd9\u91cc\u9ed8\u8ba4\u4e3atrue\u53ef\u4ee5\u4e0d\u7528\u914d\u7f6e
+      profile: dev
+      name: ${spring.application.name}
+      uri: http://localhost:8301/ # config server \u914d\u7f6e\u670d\u52a1\u5730\u5740
+      label: master   
+       

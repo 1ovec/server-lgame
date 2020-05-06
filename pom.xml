@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>lgame</groupId>
+	<artifactId>server-lgame</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>server-lgame</name>
+
+	<modules>
+		<module>lgame-mapper</module>
+		<module>lgame-redis</module>
+		<module>lgame-portal</module>
+		<module>lgame-common</module>
+		<module>lgame-config</module>
+		<module>lgame-registry</module>
+		<module>lgame-security</module>
+		<module>lgame-sms</module>
+		<module>lgame-wish</module>
+		<module>lgame-monitor</module>
+		<module>lgame-auth</module>
+	</modules>
+
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.7.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+		<pagehelper-starter.version>1.2.10</pagehelper-starter.version>
+		<pagehelper.version>5.1.8</pagehelper.version>
+		<druid.version>1.1.10</druid.version>
+		<mybatis.version>3.4.6</mybatis.version>
+		<lgame-common.version>1.0-SNAPSHOT</lgame-common.version>
+		<lgame-mapper.version>1.0-SNAPSHOT</lgame-mapper.version>
+		<lgame-security.version>1.0-SNAPSHOT</lgame-security.version>
+		<com.alibaba.version>1.2.7</com.alibaba.version>
+		<com.oracle.version>11.2.0.3</com.oracle.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<com.google.code.gson.version>2.6.2</com.google.code.gson.version>
+		<pagehelper-starter.version>1.2.10</pagehelper-starter.version>
+		<pagehelper.version>5.1.8</pagehelper.version>
+		<jjwt.version>0.9.0</jjwt.version>
+		<hutool.version>4.5.7</hutool.version>
+		<spring-data-commons.version>2.1.5.RELEASE</spring-data-commons.version>
+		<commons-lang3.version>3.9</commons-lang3.version>
+		<commons-codec.version>1.10</commons-codec.version>
+		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+		<logstash-logback.version>5.3</logstash-logback.version>
+		<org.springframework.boot.version>2.1.7.RELEASE</org.springframework.boot.version>
+		<admin-starter-server.version>2.1.5</admin-starter-server.version>
+		<com.qcloud.version>5.5.3</com.qcloud.version>
+    	<com.tencent.cloud.version>3.0.5</com.tencent.cloud.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--Spring Cloud 相关依赖 -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!--通用模块 -->
+			<dependency>
+				<groupId>lgame-common</groupId>
+				<artifactId>lgame-common</artifactId>
+				<version>${lgame-common.version}</version>
+			</dependency>
+
+			<!--Mapper通用模块 -->
+			<dependency>
+				<groupId>lgame-mapper</groupId>
+				<artifactId>lgame-mapper</artifactId>
+				<version>${lgame-mapper.version}</version>
+			</dependency>
+
+			<!-- 安全模块 -->
+			<dependency>
+				<groupId>lgame-security</groupId>
+				<artifactId>lgame-security</artifactId>
+				<version>${lgame-security.version}</version>
+			</dependency>
+
+			<!--MyBatis分页插件starter -->
+			<dependency>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper-spring-boot-starter</artifactId>
+				<version>${pagehelper-starter.version}</version>
+			</dependency>
+			<!--MyBatis分页插件 -->
+			<dependency>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper</artifactId>
+				<version>${pagehelper.version}</version>
+			</dependency>
+
+			<!--集成druid连接池 -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid-spring-boot-starter</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+
+			<!-- MyBatis -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+
+			<!--集成SpringBoot Admin监控 -->
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-starter-server</artifactId>
+				<version>${admin-starter-server.version}</version>
+			</dependency>
+			
+			<!-- fastjson -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${com.alibaba.version}</version>
+			</dependency>
+
+			<!-- gson -->
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${com.google.code.gson.version}</version>
+			</dependency>
+
+			<!-- ojdbc -->
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc6</artifactId>
+				<version>${com.oracle.version}</version>
+			</dependency>
+
+			<!--JWT(Json Web Token)登录支持 -->
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt</artifactId>
+				<version>${jjwt.version}</version>
+			</dependency>
+
+			<!--Hutool Java工具包 -->
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-all</artifactId>
+				<version>${hutool.version}</version>
+			</dependency>
+
+			<!--SpringData工具包 -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-commons</artifactId>
+				<version>${spring-data-commons.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!--集成logstash -->
+			<dependency>
+				<groupId>net.logstash.logback</groupId>
+				<artifactId>logstash-logback-encoder</artifactId>
+				<version>${logstash-logback.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${org.springframework.boot.version}</version>
+			</dependency>
+
+			<!-- redis -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-redis</artifactId>
+				<version>${org.springframework.boot.version}</version>
+			</dependency>
+
+			
+			<!-- 腾讯云sdk -->
+	        <dependency>
+	            <groupId>com.qcloud</groupId>
+	            <artifactId>cos_api</artifactId>
+	            <version>${com.qcloud.version}</version>
+	        </dependency>
+	         <!-- 腾讯云sdk获取临时秘钥-->
+	        <dependency>
+	            <groupId>com.tencent.cloud</groupId>
+	            <artifactId>cos-sts-java</artifactId>
+	            <version>${com.tencent.cloud.version}</version>
+	        </dependency>
+         </dependencies>
+
+	</dependencyManagement>
+   
+    
+</project>

@@ -1,0 +1,21 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+  instance:
+    prefer-ip-address: true 
+
+
+spring:
+  application:
+    name: lgame-redis
+  cloud:
+    config:
+      discovery:
+        service-id: lgame-config
+        enabled: true
+      enabled: true  #这里默认为true可以不用配置
+      profile: dev
+      name: ${spring.application.name}
+      uri: http://localhost:8301/ # config server 配置服务地址
+      label: master   

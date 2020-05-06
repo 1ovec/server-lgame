@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lbd.lgame.mapper.UserPayCardMapper">
+	
+	<!-- 查询用户是否已绑卡 -->
+	<select id="queryUserPayCardCount" parameterType="String" resultType="int">
+		SELECT 
+				COUNT(1) 
+		FROM 
+				T_LG_PAY_CARD A 
+		WHERE 
+				A.USER_ID = #{userID}
+		AND
+				A.STATUS = '1' 
+	</select>
+	
+	<!-- 查询用户绑卡信息 -->
+	<select id="getUserPayCardInfo" parameterType="String" resultType="com.lbd.lgame.model.view.UserPayCardView">
+		SELECT 
+				B.USER_NAME AS userName,
+				A.BANK_NAME AS bankName,
+				A.CARD_NO  AS cardNo,
+				C.ICON_PATH AS iconPath,
+				C.CARD_TYPE AS cardType,
+				A.CARD_ID AS cardID
+		FROM 
+				T_LG_PAY_CARD A 
+		INNER JOIN 
+				T_LG_USER_REAL B
+		ON 
+				A.USER_ID=B.USER_ID
+		INNER JOIN
+				T_LG_CARD_LIST C
+		ON
+				A.CARD_ID = C.ID
+		WHERE 
+				A.USER_ID = #{userID}
+		AND
+				A.STATUS = '1'
+	</select>
+	
+	
+	
+</mapper>

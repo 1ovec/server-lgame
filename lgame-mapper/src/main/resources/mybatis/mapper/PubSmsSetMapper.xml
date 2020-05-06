@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lbd.lgame.mapper.PubSmsSetMapper">
+	<!-- 根据短信类型检索短信模板配置	 -->
+	<select id="querySmsSetBySmsType" parameterType="String" resultType="com.lbd.lgame.model.PubSmsSet">
+		SELECT
+		    M.ID AS id,
+		    M.SMS_TEMPLATE AS smsTemplate,
+		    M.SMS_TYPE AS smsType,
+		    M.STATUS AS status,
+		    M.REMARK AS remark,
+		    M.EXP_TIME AS expTime,
+		    D.DIC_NAME AS dicName,
+		    M.SMS_TEMPLATE_CONTENT AS smsTemplateContent
+		FROM
+		    T_PUB_SMS_SET M
+		LEFT  JOIN 
+		    T_PUB_BASE_DIC D 
+		ON 
+		    D.DIC_CODE=M.SMS_TYPE 
+		AND 
+		    D.DIC_TYPE='T0008' 
+		AND 
+		    D.STATUS='1' 
+		AND 
+		    M.STATUS='1'  
+		WHERE  
+		    M.SMS_TYPE= #{smsType}		
+	</select> 
+</mapper>

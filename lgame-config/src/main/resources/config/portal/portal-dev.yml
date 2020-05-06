@@ -1,0 +1,13 @@
+spring:
+ datasource:
+  url: jdbc:oracle:thin:@192.168.50.100:1521:ldtest
+  username: l_game
+  password: l_game123
+  driverClassName: oracle.jdbc.driver.OracleDriver
+  max-active: 20
+  min-idle: 8
+  initial-size: 10
+  maxWait: 60000
+  testWhileIdle: true
+  poolPreparedStatements: false
+  validationQuery: SELECT 1 FROM DUAL 

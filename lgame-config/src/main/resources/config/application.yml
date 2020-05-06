@@ -1,0 +1,26 @@
+server:
+  port: 8301
+spring:
+  application:
+    name: lgame-config
+  profiles:
+    active: native #\u4f7f\u7528\u672c\u5730\u914d\u7f6e\uff0c\u8981\u4f7f\u7528git\u5b58\u50a8\u6539\u4e3agit\u5373\u53ef
+  cloud:
+    config:
+      server:
+        native: #\u672c\u5730\u4ed3\u5e93\u5b58\u50a8
+          search-locations: classpath:/config/{application}
+        git: #Git\u4ed3\u5e93\u5b58\u50a8
+          uri: https://gitee.com/macrozheng/mall-config.git
+          username: macro
+          password: 123456
+          clone-on-start: true
+          search-paths: '{application}'  
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+  instance:
+    prefer-ip-address: true    
+       

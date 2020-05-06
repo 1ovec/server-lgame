@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: lgame-monitor
+  security: # \u914d\u7f6e\u767b\u5f55\u7528\u6237\u540d\u548c\u5bc6\u7801
+    user:
+      name: macro
+      password: 123456
+  boot:  # \u4e0d\u663e\u793aadmin-server\u7684\u76d1\u63a7\u4fe1\u606f
+    admin:
+      discovery:
+        ignored-services: ${spring.application.name}
+server:
+  port: 8101
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8001/eureka/

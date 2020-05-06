@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lbd.lgame.mapper.PubButtonMapper">
+
+    <!-- 查询通知 -->
+    <select id="getListInfo" resultType="com.lbd.lgame.model.PubButton">
+    	SELECT 
+    			A.ID AS ID,
+    			A.B_TYPE AS bType,
+    			A.STATUS AS status,
+    			A.REMARK AS  remark
+    	FROM 
+    			T_PUB_BUTTON A 
+    </select>
+    
+    <!-- 查询开关信息 -->
+    <select id="getPubButtonInfo" parameterType="string" resultType="com.lbd.lgame.model.PubButton">
+    	SELECT 
+    			A.ID AS ID,
+    			A.B_TYPE AS bType,
+    			A.STATUS AS status,
+    			A.REMARK AS  remark
+    	FROM 
+    			T_PUB_BUTTON A 
+    	WHERE
+    			A.B_TYPE = #{bType}
+    </select>
+    
+    
+    <!-- 根据字典编号和名称检索开关表	 -->
+	<select id="queryButtonByDicCode" parameterType="String" resultType="com.lbd.lgame.model.PubButton">
+		SELECT
+		    B.ID AS  id,
+		    B.B_TYPE AS  btype,
+		    B.STATUS AS  status,
+		    B.CREATE_USER AS  createUser,
+		    B.EDIT_USER AS  editUser,
+		    B.REMARK  AS  remark,
+		    D.DIC_NAME AS dicName
+		FROM
+		    T_PUB_BUTTON B
+		LEFT  JOIN 
+		    T_PUB_BASE_DIC D 
+		ON 
+		    D.DIC_CODE=B.B_TYPE 
+		AND 
+		    D.DIC_TYPE='T0006' 
+		AND 
+		    D.STATUS='1' 
+		WHERE  
+		    D.DIC_CODE= #{dicCode}
+		AND    
+		   D.DIC_NAME=#{dicName}
+	</select> 
+    
+</mapper>
+

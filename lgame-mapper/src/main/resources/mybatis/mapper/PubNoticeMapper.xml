@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lbd.lgame.mapper.PubNoticeMapper">
+
+    <!-- 查询通知 -->
+    <select id="getPubNoticeList" resultType="com.lbd.lgame.model.PubNotice">
+    	SELECT 
+    			A.ID AS ID,
+    			A.TITLE AS title,
+    			A.CONTENT AS content,
+    			A.CONTENT_TYPE AS contentType,
+    			A.PATH AS path,
+    			TO_CHAR(A.CREATE_TIME,'yyyy-MM-dd HH24:MI:SS') AS createTime,
+    			A.STATUS AS status
+    	FROM 
+    			T_PUB_NOTICE A 
+    	WHERE
+    			A.STATUS = '1'
+		ORDER BY 
+				A.CREATE_TIME DESC
+    </select>
+    
+    
+
+</mapper>

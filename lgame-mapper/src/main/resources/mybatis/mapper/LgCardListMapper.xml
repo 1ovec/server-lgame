@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lbd.lgame.mapper.LgCardListMapper">
+	
+	<!-- 查询银行卡列表 -->
+	<select id="queryCardList" parameterType="String" resultType="com.lbd.lgame.model.LgCardList">
+		SELECT 
+				A.BANK_NAME AS bankName,
+				A.CARD_TYPE AS cardType,
+				A.FIRST_LETTER AS firstLetter,
+				A.ICON_PATH AS iconPath
+		FROM 
+				T_LG_CARD_LIST A 
+		WHERE
+				A.STATUS = '1'
+		AND 
+				A.CARD_TYPE = #{cardType}
+		ORDER BY 
+				A.FIRST_LETTER 
+	</select>
+</mapper>

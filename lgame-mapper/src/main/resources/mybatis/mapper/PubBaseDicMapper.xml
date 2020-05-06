@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lbd.lgame.mapper.PubBaseDicMapper">
+	<!-- 根据类型查询字典数据 -->
+	<select id="queryBaseByDicType" parameterType="string" resultType="com.lbd.lgame.model.PubBaseDic">
+		SELECT 
+				DIC_TYPE AS dicType,
+				DIC_CODE AS dicCode,
+				DIC_NAME AS dicName
+		FROM
+				T_PUB_BASE_DIC
+		WHERE
+				STATUS = '1'
+		AND	
+				DIC_TYPE = #{dicType}
+	</select >
+		
+	<!-- 查询字典表每天允许发送短信最大次数 -->
+    <select id="queryBaseDicSmsCount" resultType="int">
+		SELECT A.DIC_CODE as count
+		  FROM T_PUB_BASE_DIC A
+		 WHERE A.STATUS = '1'
+		AND A.DIC_TYPE = 'T0009'
+    </select>
+</mapper>

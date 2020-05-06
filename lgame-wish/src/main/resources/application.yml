@@ -1,0 +1,59 @@
+server:
+  port: 8086
+  servlet:
+    context-path: /lgame-wish
+    
+   
+eureka:
+  instance:
+    metadata-map:
+      management:
+        context-path: /lgame-wish/actuator
+    health-check-url: http://localhost:${server.port}/lgame-wish/actuator/health
+    status-page-url: http://localhost:${server.port}/lgame-wish/actuator/info
+    home-page-url: http://localhost:${server.port}/
+
+#mybatis\u914d\u7f6e
+mybatis:
+  mapper-locations:
+    - classpath:mybatis/*.xml
+    - classpath:mybatis/mapper/*.xml
+management: #\u5f00\u542fSpringBoot Admin\u7684\u76d1\u63a7
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+      
+secure:
+  ignored:
+    urls: #\u5b89\u5168\u8def\u5f84\u767d\u540d\u5355
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /sso/**
+      - /checkSms/**
+      - /sms/**
+      - /wish/**
+      
+jwt:
+  tokenHeader: Authorization #JWT\u5b58\u50a8\u7684\u8bf7\u6c42\u5934
+  secret: mall-portal-secret #JWT\u52a0\u89e3\u5bc6\u4f7f\u7528\u7684\u5bc6\u94a5
+  expiration: 604800 #JWT\u7684\u8d85\u671f\u9650\u65f6\u95f4(60*60*24)
+  tokenHead: Bearer #JWT\u8d1f\u8f7d\u4e2d\u62ff\u5230\u5f00\u5934
+
+#feign\u8bf7\u6c42\u8d85\u65f6\u65f6\u95f4\u914d\u7f6e  
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 300000
+        readTimeout: 300000
+
+  
+
+
+

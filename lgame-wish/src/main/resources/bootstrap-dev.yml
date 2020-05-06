@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    config:
+      profile: dev #\u542f\u7528\u73af\u5883\u540d\u79f0
+      label: master #\u5206\u652f\u540d\u79f0
+      name: portal #\u914d\u7f6e\u6587\u4ef6\u540d\u79f0
+      discovery:
+        enabled: true
+        service-id: lgame-config
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/

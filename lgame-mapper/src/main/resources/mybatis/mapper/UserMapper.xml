@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lbd.lgame.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <select id="testUserCount" resultType="int">
+    	select count(*)from T_APP_USER
+    </select>
+    
+   <!-- 保存app用户信息 -->
+   <insert id="saveAppUser" parameterType="com.lbd.lgame.model.User" >
+   	  <selectKey resultType="string" order="BEFORE" keyProperty="userId">
+			SELECT SEQ_T_APP_USER.nextval AS userId FROM DUAL
+  	  </selectKey> 	
+    INSERT INTO T_APP_USER ( 
+      <if test="userMail != null" >
+          USER_MAIL,
+      </if>
+      <if test="userPasswd != null" >
+         USER_PASSWD,
+      </if>
+      <if test="userTel != null" >
+         USER_TEL,
+      </if>
+      <if test="userRealId != null" >
+          USER_REAL_ID,
+      </if>
+      <if test="status != null" >
+         STATUS,
+      </if>
+      <if test="token != null" >
+         TOKEN,
+      </if>
+      <if test="remark != null" >
+          REMARK,
+      </if>
+      <if test="appVesionCode != null" >
+         APP_VERSION_CODE,
+      </if>
+      <if test="lastLoginTime != null" >
+          LAST_LOGIN_TIME,
+      </if>
+      <if test="loginEquipMent != null" >
+          LOGIN_EQUIPMENT,
+      </if>
+      <if test="loginFailCount != null" >
+          LOGIN_FAIL_COUNT,
+      </if>
+      <if test="loginFailDate != null" >
+         LOGIN_FAIL_DATE,
+      </if>
+      <if test="deviceVersion != null" >
+          DEVICE_VERSION,
+      </if>
+      <if test="systemVersion != null" >
+         SYSTEM_VERSION,
+      </if>
+      <if test="deviceBrand != null" >
+          DEVICE_BRAND,
+      </if>
+     	 USER_ID
+   	  )values(	    
+      <if test="userMail != null" >
+          #{userMail},
+      </if>
+      <if test="userPasswd != null" >
+         #{userPasswd},
+      </if>
+      <if test="userTel != null" >
+         #{userTel},
+      </if>
+      <if test="userRealId != null" >
+          #{userRealId},
+      </if>
+      <if test="status != null" >
+          #{status},
+      </if>
+      <if test="token != null" >
+          #{token},
+      </if>
+      <if test="remark != null" >
+          #{remark},
+      </if>
+      <if test="appVesionCode != null" >
+          #{appVesionCode},
+      </if>
+      <if test="lastLoginTime != null" >
+          #{lastLoginTime},
+      </if>
+      <if test="loginEquipMent != null" >
+           #{loginEquipMent},
+      </if>
+      <if test="loginFailCount != null" >
+           #{loginFailCount},
+      </if>
+      <if test="loginFailDate != null" >
+         #{loginFailDate},
+      </if>
+      <if test="deviceVersion != null" >
+           #{deviceVersion},
+      </if>
+      <if test="systemVersion != null" >
+          #{systemVersion},
+      </if>
+      <if test="deviceBrand != null" >
+          #{deviceBrand},
+      </if>
+    	  #{userId}
+       )  
+  </insert>  
+  
+    <!-- 根据登录名和令牌查询用户是否合法 -->
+	<select id="checkUser" parameterType="com.lbd.lgame.model.User" resultType="com.lbd.lgame.model.User">
+		 SELECT
+			   A.USER_ID AS userId,
+		       A.USER_TEL AS userTel
+		 FROM 
+		 		T_APP_USER A
+		 <where>
+		 		<if test="userTel !=null and userTel !='' ">
+		 			A.USER_TEL = #{userTel}
+		 		</if>
+		 		<if test="status !=null and status !='' ">
+		 			AND A.STATUS = #{status}
+		 		</if>
+		 </where>
+	</select>
+	
+	<!-- 查询手机号是否存在 -->
+	<select id="queryTelCount" parameterType="String" resultType="int">
+		SELECT 
+				COUNT(*) 
+		FROM 
+				T_APP_USER A 
+		WHERE 
+				A.USER_TEL = #{_parame}
+	</select>
+	
+	
+	<!-- 根据登录名和密码查询唯一用户   登录功能 -->
+	<select id="userLogin" parameterType="map" resultType="com.lbd.lgame.model.User">
+		 SELECT 
+			   A.USER_ID AS userId,
+		       A.USER_TEL AS userTel
+		 FROM 
+		 	   T_APP_USER A
+		 WHERE 
+		 	   A.USER_TEL = #{userTel}
+		 <if test="userPasswd !=null and userPasswd !='' ">
+		 	  AND A.USER_PASSWD = #{userPasswd}
+		 </if>
+		
+    </select>
+    
+    <!-- 用户信息修改 -->
+    <update id="updateUserInfo" parameterType="com.lbd.lgame.model.User">
+    	UPDATE 
+    			T_APP_USER A 
+    	<set>
+    		<if test="userMail !=null and userMail !='' ">
+    			A.USER_MAIL = #{userMail},
+    		</if>
+    		<if test="userPasswd !=null and userPasswd !='' ">
+    			A.USER_PASSWD = #{userPasswd},
+    		</if>
+    		<if test="status !=null and status !='' ">
+    			A.STATUS = #{status},
+    		</if>
+    		<if test="imagePath !=null and imagePath !='' ">
+    			A.IMAGE_PATH = #{imagePath},
+    		</if>
+    		<if test=" appVesionCode !=null and appVesionCode !='' ">
+    			A.APP_VERSION_CODE = #{appVesionCode},
+    		</if>
+    		<if test=" lastLoginTime !=null and lastLoginTime !='' ">
+    			A.LAST_LOGIN_TIME = #{lastLoginTime},
+    		</if>
+    		<if test=" loginEquipMent !=null and loginEquipMent !=''">
+    			A.LOGIN_EQUIPMENT = #{loginEquipMent},
+    		</if>
+    		<if test=" loginFailCount !=null and loginFailCount !='' ">
+    			A.LOGIN_FAIL_COUNT = #{loginFailCount},
+    		</if>
+    		<if test =" loginFailDate !=null and loginFailDate!='' ">
+    			A.LOGIN_FAIL_DATE = #{loginFailDate},
+    		</if>
+    		<if test =" nickName !=null and nickName !='' ">
+    			A.NICK_NAME = #{nickName},
+    		</if>
+    		<if test =" status !=null and status !='' ">
+    			A.REAL_STATUS = #{status},
+    		</if>
+    	</set> 
+		WHERE 
+				A.USER_TEL = #{userTel}
+    </update>
+    
+    <!-- 根据用户ID修改实名认证状态  -->
+    <update id="updateRealStatusByUserId" parameterType="String">
+	   UPDATE T_APP_USER 
+			SET 
+			    REAL_STATUS =#{realStatus}	 	
+	  	  WHERE  
+	  	  		 USER_ID= #{userId}   	  
+  	</update> 
+  	
+  	<!-- 根据手机号查询用户信息 -->
+  	<select id="queryUserByUserTel" parameterType="String" resultType="com.lbd.lgame.model.User">
+  		SELECT
+		    A.USER_ID AS userId,
+		    A.USER_MAIL AS userMail,
+		    A.USER_PASSWD AS userPasswd,
+		    A.USER_TEL AS userTel,
+		    A.USER_REAL_ID AS userRealId,
+		    A.STATUS AS status,
+		    TO_CHAR(A.REG_TIME,'yyyy-MM-dd HH24:MI:SS') AS regTime,
+		    A.TOKEN AS token,		  
+		    A.APP_VERSION_CODE AS appVesionCode,
+		    A.REMARK AS remark,
+		    TO_CHAR(A.LAST_LOGIN_TIME,'yyyy-MM-dd HH24:MI:SS') AS lastLoginTime,
+		    A.LOGIN_EQUIPMENT AS loginEquipMent,
+		    A.LOGIN_FAIL_COUNT AS loginFailCount,
+		    A.LOGIN_FAIL_DATE AS loginFailDate,
+		    A.DEVICE_VERSION AS deviceVersion,
+		    A.SYSTEM_VERSION AS systemVersion,
+		    A.DEVICE_BRAND AS deviceBrand,
+            A.REAL_STATUS AS realStatus,
+            B.USER_NAME AS userName
+		FROM
+		    T_APP_USER A
+        LEFT JOIN
+            T_LG_USER_REAL B
+        ON
+            B.USER_ID = A.USER_ID  
+        WHERE  
+  	  			A.USER_TEL= #{userTel} 
+  	  		AND
+  	  			A.STATUS='1'      	  	
+  	</select> 	
+</mapper>

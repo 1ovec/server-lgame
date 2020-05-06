@@ -1,0 +1,41 @@
+server:
+ port: 8142
+ servlet:
+  context-path: /lgame-redis
+    
+#服务访问context-path
+eureka:
+  instance:
+    metadata-map:
+      management:
+        context-path: /lgame-redis/actuator
+    health-check-url: http://localhost:${server.port}/lgame-redis/actuator/health
+    status-page-url: http://localhost:${server.port}/lgame-redis/actuator/info
+    home-page-url: http://localhost:${server.port}/ 
+  
+   
+spring:
+ redis:
+  host: 192.168.50.111
+  port: 6379
+  password:
+  database: 1
+  timeout: 3000
+  jedis:
+    pool:
+     max-active: 2000
+     max-wait: 1000
+     max-idle: 300
+     min-idle: 50
+
+#mybatis\u914d\u7f6e
+mybatis:
+  mapper-locations:
+    - classpath:mybatis/mapper/*.xml
+
+        
+smsRedis:
+#redis 短信发送次数前缀 
+ sendCountKeyPrifix: SMS_SEND_COUNT_
+#redis 验证码保存前缀KEY 
+ verificationCodeKeyPrefix: VERIFICATION_CODE_       

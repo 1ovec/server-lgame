@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>lgame</groupId>
+    <artifactId>server-lgame</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>lgame-security</groupId>
+  <artifactId>lgame-security</artifactId>
+  <name>lgame-security</name>
+  <version>1.0-SNAPSHOT</version>
+  
+  <dependencies>
+  
+  		<!-- 工具工程 -->
+  		<dependency>
+  			<groupId>lgame-common</groupId>
+            <artifactId>lgame-common</artifactId>
+  		</dependency>
+  		
+  		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>  
+        	
+  </dependencies>
+  
+  <!-- 认证 -->
+</project>

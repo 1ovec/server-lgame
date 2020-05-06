@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lbd.lgame.mapper.PubImageMapper">		
+		<!-- 保存上传图片信息-->
+	<insert id="savePubImage" parameterType="com.lbd.lgame.model.PubImage">
+	  INSERT INTO T_PUB_IMAGE
+		<trim prefix="(" suffix=")" suffixOverrides="," >	
+		  <if test="imageType != null" >	
+			 		IMAGE_TYPE,
+		  </if>		
+		  <if test="imagePath != null" >	
+			 		IMAGE_PATH,
+		  </if>	
+		  	 		CREATE_TIME
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >		 
+		  <if test="imageType != null" >	
+			  		#{imageType},
+		  </if>		
+		  <if test="imagePath != null" >	
+			  		#{imagePath},
+		  </if>	
+		  	   		SYSDATE
+		</trim>			
+	</insert>    
+</mapper>
+
