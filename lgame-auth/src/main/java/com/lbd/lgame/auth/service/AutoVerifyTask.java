@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author lichuang 2020-02-04
+ * 锻炼自己的线程能力，在项目中实际使用线程池的地方
  */
 @Service
 public class AutoVerifyTask {
@@ -294,5 +295,8 @@ public class AutoVerifyTask {
             return true;
         }
     }
+
+
+
 
 }
