@@ -41,7 +41,7 @@
 		<lgame-common.version>1.0-SNAPSHOT</lgame-common.version>
 		<lgame-mapper.version>1.0-SNAPSHOT</lgame-mapper.version>
 		<lgame-security.version>1.0-SNAPSHOT</lgame-security.version>
-		<com.alibaba.version>1.2.7</com.alibaba.version>
+		<com.alibaba.version>1.2.25</com.alibaba.version>
 		<com.oracle.version>11.2.0.3</com.oracle.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 		<com.google.code.gson.version>2.6.2</com.google.code.gson.version>
